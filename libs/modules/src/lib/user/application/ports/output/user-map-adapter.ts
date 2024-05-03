@@ -1,5 +1,5 @@
 import { UserEntity as User } from "../../../domain/user.entity";
-import { UserInterface as IUserModel  } from "../../../domain/user.interface";
+import { UserEntity as IUserModel  } from "../../../domain";
 
 type UserShow = Omit<User, "password">;
 

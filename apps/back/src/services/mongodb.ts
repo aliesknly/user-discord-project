@@ -1,18 +1,57 @@
 import mongoose from 'mongoose';
 
-const URI = `mongodb://root:example@localhost:27017`;
+interface MongoDBOptionsInterface {
+  protocol: string;
+  host: string;
+  port: number;
+  user: string;
+  password: string;
+  databaseName: string;
+}
 
-export async function MongoDBService() {
-  await mongoose
-    .connect(URI, {
-      authSource: 'admin'
-    })
-    .then((res) => {
-      console.log('✅ MongoDB connected 🔌📡🚀...');
-    })
-    .catch((err) => {
-      console.group('❌ MongoDB connection error');
-      console.log(err);
-      console.groupEnd();
-    });
+export class MongoDBService {
+  private readonly protocol: string;
+  private readonly host: string;
+  private readonly port: number;
+  private readonly user: string;
+  private readonly password: string;
+  private readonly databaseName: string;
+
+  constructor(options: MongoDBOptionsInterface) {
+    const {
+      protocol = 'mongodb',
+      host,
+      port = 27017,
+      user,
+      password,
+      databaseName,
+    } = options;
+
+    this.protocol = protocol;
+    this.host = host;
+    this.port = port;
+    this.user = user;
+    this.password = password;
+    this.databaseName = databaseName;
+  }
+
+  public async connect() {
+    await mongoose
+      .connect(
+        `${this.protocol}://${this.host}:${this.port}/${this.databaseName}`,
+        {
+          authSource: 'admin',
+          user: this.user,
+          pass: this.password,
+        }
+      )
+      .then(() => {
+        console.log('✅ MongoDB connected 🔌📡🚀...');
+      })
+      .catch((err) => {
+        console.group('❌ MongoDB connection error');
+        console.log(err);
+        console.groupEnd();
+      });
+  }
 }

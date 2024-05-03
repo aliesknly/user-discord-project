@@ -6,17 +6,24 @@ import { AppRoutes } from './presentation';
 import { ApiRestService } from './services/api';
 import { MongoDBService } from './services/mongodb';
 
-const api = new ApiRestService({
-  port:  Number(process.env.PORT )|| 3333,
-  routes: AppRoutes.routes,
-});
+(() => {
+  main();
+})();
 
+async function main() {
+  // Connect to MongoDB
+  await new MongoDBService({
+    protocol: 'mongodb',
+    host: process.env.MONGODB_HOST || 'localhost',
+    port: Number(process.env.MONGODB_PORT) || 27017,
+    user: process.env.MONGODB_USER || 'root',
+    password: process.env.MONGODB_PASSWORD || 'example',
+    databaseName: process.env.MONGODB_DATABASE || 'discord',
+  }).connect();
 
-
-api.addRoute('/test', (req, res) => {
-  res.send({ message: 'Welcome to back!' });
-});
-
-MongoDBService()
-
-api.start();
+  // Start the server
+  new ApiRestService({
+    port: Number(process.env.PORT) || 3333,
+    routes: AppRoutes.routes,
+  }).start();
+}
