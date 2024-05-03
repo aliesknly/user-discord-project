@@ -4,7 +4,7 @@ import { UserEntity as IUserModel  } from "../../../domain";
 type UserShow = Omit<User, "password">;
 
 export const mapUserToModel = (user: User): IUserModel => ({
-  user: user.user,
+  userName: user.userName,
   email: user.email,
   inscriptionDate: user.inscriptionDate,
   totalTimeLikeMember: user.totalTimeLikeMember,

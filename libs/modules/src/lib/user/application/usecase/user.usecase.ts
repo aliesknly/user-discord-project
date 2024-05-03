@@ -1,9 +1,9 @@
 import { UserEntity } from '../../domain';
 import { CreateUserDto, UpdateUserDto } from '../../domain/dto';
-import { UserRepositoryInterface } from '../../domain/repository';
+import { UserRepository } from '../../domain/repository';
 import { ForPersistenceDBRepositoryInterface } from '../ports/output/user-persistent-db.interface';
 
-export class UserUseCase implements UserRepositoryInterface {
+export class UserUseCase implements UserRepository {
   constructor(
     private readonly userSchema: ForPersistenceDBRepositoryInterface
   ) {}
