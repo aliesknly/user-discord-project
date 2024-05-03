@@ -1,4 +1,4 @@
-import { Validator } from '@user-discord-project/config';
+import { Validator } from '../../../../configs/validator';
 
 export class CreateUserDto {
   public readonly inscriptionDate: string;
