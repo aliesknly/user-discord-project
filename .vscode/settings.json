@@ -1,0 +1,12 @@
+{
+    "exportall.config.folderListener": [
+        "/libs/modules/src/lib/user",
+        "/libs/modules/src/lib/user/domian",
+        "/libs/modules/src/lib/user/application/ports",
+        "/libs/modules/src/lib/user/application/ports/output",
+        "/apps/back/src/modules/user/infrastructure/input",
+        "/apps/back/src/presentation",
+        "/libs/modules/src/configs",
+        "/libs/modules/src"
+    ]
+}
