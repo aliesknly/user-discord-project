@@ -18,14 +18,7 @@ export class MongoDBService {
   private readonly databaseName: string;
 
   constructor(options: MongoDBOptionsInterface) {
-    const {
-      protocol = 'mongodb',
-      host,
-      port = 27017,
-      user,
-      password,
-      databaseName,
-    } = options;
+    const { protocol, host, port, user, password, databaseName } = options;
 
     this.protocol = protocol;
     this.host = host;
@@ -37,14 +30,12 @@ export class MongoDBService {
 
   public async connect() {
     await mongoose
-      .connect(
-        `${this.protocol}://${this.host}:${this.port}/${this.databaseName}`,
-        {
-          authSource: 'admin',
-          user: this.user,
-          pass: this.password,
-        }
-      )
+      .connect(`${this.protocol}://${this.host}:${this.port}`, {
+        authSource: 'admin',
+        user: this.user,
+        pass: this.password,
+        dbName: this.databaseName,
+      })
       .then(() => {
         console.log('✅ MongoDB connected 🔌📡🚀...');
       })
