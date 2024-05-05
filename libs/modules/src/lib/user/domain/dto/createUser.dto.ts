@@ -1,9 +1,12 @@
 import { Validator } from '../../../../configs/validator';
 
 export class CreateUserDto {
-  public readonly inscriptionDate: string;
-  private constructor(public userName: string, public email: string) {
-    this.inscriptionDate = new Date().toISOString();
+  private constructor(
+    public userName: string,
+    public email: string,
+    public inscriptionDate?: string
+  ) {
+    if (!this.inscriptionDate) this.inscriptionDate = new Date().toISOString();
   }
 
   static create(object: { [key: string]: any }): [string?, CreateUserDto?] {

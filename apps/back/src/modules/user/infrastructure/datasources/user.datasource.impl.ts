@@ -5,17 +5,30 @@ import {
   UserDatasource,
   UserEntity,
 } from '@user-discord-project/modules';
+import { UserModel } from '../data/models/user.mongodb.model';
 
 export class UserDatasourceImpl implements UserDatasource {
-
-  
   async create(user: CreateUserDto): Promise<UserEntity> {
-    const { email, userName } = user;
+    const { email, userName, inscriptionDate } = user;
 
     try {
       // 1. Verify if user exists
+      const existUser = await UserModel.findOne({ email });
+
+      if (existUser) {
+        throw CustomError.badRequest('User already exists');
+      }
+
+      const user = await UserModel.create({
+        email,
+        userName,
+        inscriptionDate,
+        totalTimeLikeMember: 0,
+      });
+
+      await user.save();
       // 2. Map user to UserEntity
-      return new UserEntity(email, userName, new Date().toISOString(), 22);
+      return user;
     } catch (error) {
       if (error instanceof CustomError) {
         throw error;
