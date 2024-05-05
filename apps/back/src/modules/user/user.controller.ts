@@ -1,4 +1,4 @@
-import { CreateUserDto, UserRepository } from '@user-discord-project/modules';
+import { CreateUserDto, UpdateUserDto, UserRepository } from '@user-discord-project/modules';
 import { Request, Response } from 'express';
 
 export class UserController {
@@ -20,4 +20,8 @@ export class UserController {
         return res.status(500).json({ error });
       });
   };
+
+  updateUser = (req: Request, res: Response) => {
+    const [error, updateUserDto] = UpdateUserDto.create(req.body);
+  }
 }

@@ -5,7 +5,6 @@ import { UserDatasourceImpl, UserRepositoryImpl } from './infrastructure';
 export class UserRoutes {
   static get routes(): Router {
     const route = Router();
-
     const userDatasource = new UserDatasourceImpl();
     const userRepository = new UserRepositoryImpl(userDatasource);
     const controller = new UserController(userRepository);
