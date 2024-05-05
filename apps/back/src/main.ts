@@ -2,21 +2,29 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
+import { envs } from './config/envs';
 import { AppRoutes } from './presentation';
 import { ApiRestService } from './services/api';
 import { MongoDBService } from './services/mongodb';
 
-const api = new ApiRestService({
-  port:  Number(process.env.PORT )|| 3333,
-  routes: AppRoutes.routes,
-});
+(() => {
+  main();
+})();
 
+async function main() {
+  // Connect to MongoDB
+  await new MongoDBService({
+    protocol: envs.DB_PROTOCOL,
+    host: envs.DB_HOST,
+    port: envs.DB_PORT,
+    user: envs.DB_USER,
+    password: envs.DB_PASSWORD,
+    databaseName: envs.DB_NAME,
+  }).connect();
 
-
-api.addRoute('/test', (req, res) => {
-  res.send({ message: 'Welcome to back!' });
-});
-
-MongoDBService()
-
-api.start();
+  // Start the server
+  new ApiRestService({
+    port: envs.API_PORT,
+    routes: AppRoutes.routes,
+  }).start();
+}
