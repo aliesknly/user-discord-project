@@ -1,8 +1,8 @@
 export class UserEntity {
   constructor(
-    public user: string,
+    public userName: string,
     public email: string,
     public inscriptionDate: string,
-    public totalTimeLikeMember: string
+    public totalTimeLikeMember: number
   ) {}
 }

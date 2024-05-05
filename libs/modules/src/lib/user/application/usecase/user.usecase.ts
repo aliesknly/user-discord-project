@@ -1,9 +1,9 @@
 import { UserEntity } from '../../domain';
-import { CreateUserDto } from '../../domain/dto';
-import { UserRepositoryInterface } from '../../domain/repository';
+import { CreateUserDto, UpdateUserDto } from '../../domain/dto';
+import { UserRepository } from '../../domain/repository';
 import { ForPersistenceDBRepositoryInterface } from '../ports/output/user-persistent-db.interface';
 
-export class UserUseCase implements UserRepositoryInterface {
+export class UserUseCase implements UserRepository {
   constructor(
     private readonly userSchema: ForPersistenceDBRepositoryInterface
   ) {}
@@ -16,10 +16,10 @@ export class UserUseCase implements UserRepositoryInterface {
   async findAll(): Promise<UserEntity[] | null> {
     return await this.userSchema.getAllUser();
   }
-  async findByEmail(email: string): Promise<UserEntity | null> {
+  async getByEmail(email: string): Promise<UserEntity | null> {
     return await this.userSchema.getUserById(email);
   }
-  async update(email: string, user: CreateUserDto): Promise<UserEntity | null> {
+  async update(email: string, user: UpdateUserDto): Promise<UserEntity | null> {
     return await this.userSchema.updateUser(email, user);
   }
 }

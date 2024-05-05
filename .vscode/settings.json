@@ -7,6 +7,9 @@
         "/apps/back/src/modules/user/infrastructure/input",
         "/apps/back/src/presentation",
         "/libs/modules/src/configs",
-        "/libs/modules/src"
+        "/libs/modules/src",
+        "/libs/modules/src/lib",
+        "/libs/modules/src/lib/user/domain",
+        "/apps/back/src/modules/user/infrastructure/repositories"
     ]
 }
