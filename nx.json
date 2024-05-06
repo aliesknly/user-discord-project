@@ -55,7 +55,8 @@
         "targetName": "test"
       },
       "exclude": [
-        "apps/back-e2e/**/*"
+        "apps/back-e2e/**/*",
+        "apps/testing-e2e/**/*"
       ]
     },
     {

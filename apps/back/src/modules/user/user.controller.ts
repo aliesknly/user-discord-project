@@ -1,4 +1,8 @@
-import { CreateUserDto, UpdateUserDto, UserRepository } from '@user-discord-project/modules';
+import {
+  CreateUserDto,
+  UpdateUserDto,
+  UserRepository,
+} from '@user-discord-project/modules';
 import { Request, Response } from 'express';
 
 export class UserController {
@@ -12,7 +16,7 @@ export class UserController {
     }
 
     this.userRepository
-      .create(createUserDto!)
+      .create(createUserDto)
       .then((user) => {
         return res.status(201).json({ user });
       })
@@ -23,5 +27,16 @@ export class UserController {
 
   updateUser = (req: Request, res: Response) => {
     const [error, updateUserDto] = UpdateUserDto.create(req.body);
-  }
+  };
+
+  getUserList = (req: Request, res: Response) => {
+    this.userRepository
+      .findAll()
+      .then((userList) => {
+        return res.status(200).json({ userList });
+      })
+      .catch((error) => {
+        return res.status(500).json({ error });
+      });
+  };
 }

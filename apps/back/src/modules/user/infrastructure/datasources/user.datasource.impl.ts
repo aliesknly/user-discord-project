@@ -42,8 +42,15 @@ export class UserDatasourceImpl implements UserDatasource {
     return Promise.resolve(null);
   }
 
-  findAll(): Promise<UserEntity[]> {
-    return Promise.resolve(null);
+  async findAll(): Promise<UserEntity[]> {
+    try {
+      return await UserModel.find();
+    } catch (error) {
+      if (error instanceof CustomError) {
+        throw error;
+      }
+      throw CustomError.internalServerError();
+    }
   }
 
   getByEmail(email: string): Promise<UserEntity> {

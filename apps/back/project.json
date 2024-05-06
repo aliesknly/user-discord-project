@@ -13,7 +13,8 @@
       },
       "configurations": {
         "development": {
-          "buildTarget": "back:build:development"
+          "buildTarget": "back:build:development",
+          "watch": true
         },
         "production": {
           "buildTarget": "back:build:production"

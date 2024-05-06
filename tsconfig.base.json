@@ -19,8 +19,8 @@
       "@user-discord-project/components/server": [
         "libs/components/src/server.ts"
       ],
-      "@user-discord-project/modules": ["libs/modules/src/lib/index.ts"],
-      "@user-discord-project/config": ["libs/modules/src/configs/index.ts"]
+      "@user-discord-project/config": ["libs/modules/src/configs/index.ts"],
+      "@user-discord-project/modules": ["libs/modules/src/lib/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

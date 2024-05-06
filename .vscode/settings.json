@@ -10,6 +10,8 @@
         "/libs/modules/src",
         "/libs/modules/src/lib",
         "/libs/modules/src/lib/user/domain",
-        "/apps/back/src/modules/user/infrastructure/repositories"
+        "/apps/back/src/modules/user/infrastructure/repositories",
+        "/libs/components/src/buttons",
+        "/libs/components/src"
     ]
 }

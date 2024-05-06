@@ -2,7 +2,10 @@
   "name": "@user-discord-project/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "back:dev": "npx nx run back:serve:development",
+    "front:dev": "npx nx run front:dev"
+  },
   "private": true,
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -58,6 +61,7 @@
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
     "jest-environment-node": "^29.4.1",
+    "nodemon": "^3.1.0",
     "nx": "18.3.4",
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",

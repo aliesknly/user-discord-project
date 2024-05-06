@@ -9,9 +9,7 @@ export class UserRoutes {
     const userRepository = new UserRepositoryImpl(userDatasource);
     const controller = new UserController(userRepository);
 
-    route.get('/list', (req, resp) => {
-      resp.json({ message: 'List of users' });
-    });
+    route.get('/list', controller.getUserList);
 
     route.post('/create', controller.createUser);
 
