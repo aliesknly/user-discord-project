@@ -1,16 +1,12 @@
-'use client';
-import React from 'react';
-import axiosInstance from '../utilities/axiosInstance.interceptor';
+import { getUserList } from './actions';
+import { UserList } from './modules/UserList.component';
 
-async function getData() {
-  await axiosInstance.get('/api/user/list').then((res) => {
-    return res.data;
-  });
-
-  return null;
-}
-export default function UserPage() {
-  const data = getData();
-  console.log(data);
-  return <div></div>;
+export default async function UserPage() {
+  const { userList } = await getUserList();
+  return (
+    <div>
+      <button>Add user</button>
+      <UserList userList={userList} />
+    </div>
+  );
 }

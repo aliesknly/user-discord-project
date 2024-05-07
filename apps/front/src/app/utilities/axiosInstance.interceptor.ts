@@ -1,4 +1,3 @@
-'use client';
 import axios from 'axios';
 import { envs } from '../config'
 

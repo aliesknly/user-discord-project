@@ -5,6 +5,14 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "tsConfig": "apps/back/tsconfig.app.json",
+        "command": "nodemon --watch 'apps/back/src/**/*.ts' --exec 'ts-node' apps/back/src/main.ts",
+        "main": "apps/back/src/main.ts"
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
